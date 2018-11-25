@@ -1,0 +1,40 @@
+﻿@using Challenge4_Practice.Models
+@model List<CoffeeDate>
+@{
+    /**/
+
+    ViewBag.Title = "Future Coffee Dates";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <h1>Future Coffee Dates</h1>
+</div>
+
+<div class="row">
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Venue</th>
+                <th scope="col">Date</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (CoffeeDate c in Model)
+            {
+                using (Html.BeginForm("Delete", "CoffeeDate"))
+                {
+                    <tr>
+                        @Html.HiddenFor(m => m.Where(n => n.Id == c.Id).First().Id)
+                        <td>@c.Venue</td>
+                        <td>@c.Date</td>
+                        <td><button type="submit">Delete</button></td>
+                    </tr>
+                }
+            }
+            </tbody>
+    </table>
+
+</div>

@@ -1,0 +1,46 @@
+﻿@using Challenge4_Practice.Models
+@model HomeViewModel
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Welcome to WHOSE SHOUT?!</h1>
+
+    <div class="row">
+        <div class="form-group">
+            <input type="button" class="btn btn-primary" value="Future Coffee Dates" onclick="location.href='@Url.Action("Index", "CoffeeDate")'" />
+            @*<input type="button" class="btn btn-primary" value="New Coffee Date" onclick="location.href='@Url.Action("Create", "CoffeeDate")'" />*@
+        </div>
+    </div>
+</div>
+
+
+
+@if (Model.AspNetUser.EmailConfirmed == true)
+{
+    <h2>Create Coffee Date</h2>
+
+    <div class="row">
+        @using (Html.BeginForm("Create", "CoffeeDate"))
+        {
+            <div class="form-group">
+                @Html.LabelFor(m => m.CoffeeDate.Id)
+                @Html.TextBoxFor(m => m.CoffeeDate.Id)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.CoffeeDate.Date)
+                @Html.TextBoxFor(m => m.CoffeeDate.Date)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.CoffeeDate.Venue)
+                @Html.TextBoxFor(m => m.CoffeeDate.Venue)
+            </div>
+
+            <button type="submit">Create Coffee Date</button>
+        }
+    </div>
+}
